@@ -15,7 +15,7 @@
 .container {
   background-color: rgb(230, 228, 192);
   width: 700px;
-  height: 500px;
+  height: 800px;
   padding: 32px;
   border-radius: 16px;
 }
@@ -25,7 +25,7 @@ header {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
- 
+
 }
 
 .nav--headline {
@@ -40,6 +40,7 @@ header {
   text-decoration: none;
   margin-right: 16px;
   font-size: 20px;
+  padding: 4px 8px;
 }
 
 .home--body {
@@ -82,7 +83,8 @@ header {
   border-radius: 16px;
 }
 
-.find-van-btn {
+.find-van-btn,
+.rent-van-btn {
   margin-top: 30px;
   width: 80%;
   padding: 16px 32px;
@@ -115,6 +117,86 @@ header {
 
 
 .vans--img {
-  width: 50px;
-  height: 50px;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.vans-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.van {
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.van--type {
+  padding: 4px 8px;
+  border-radius: 8px;
+  color: white;
+}
+
+.rugged {
+  background-color: rgb(13, 94, 20);
+}
+
+.luxury {
+  background-color: rgb(37, 3, 3);
+}
+
+.simple {
+  background-color: rgb(147, 76, 14);
+}
+
+.van--filter-options {
+  display: flex;
+  justify-content: space-around;
+}
+
+.filter-btn {
+  background-color: antiquewhite;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.van--description {
+  margin-bottom: 8px;
+}
+
+.clear-filter-btn {
+  text-decoration: underline;
+}
+
+
+.vanDetail--img {
+  width: 400px;
+  height: 400px;
+  border-radius: 8px;
+}
+
+.vanDetail--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.vanDetail--img-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.active {
+  background-color: beige;
+  padding: 4px 8px;
+  border-radius: 4px;
 }

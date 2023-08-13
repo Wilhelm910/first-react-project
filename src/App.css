@@ -229,3 +229,12 @@ header {
   height: 300px;
   border-radius: 8px;
 }
+
+.host-vans-details--content {
+  margin-bottom: 8px;
+}
+
+.back-btn {
+  color: black;
+  text-decoration: none;
+}

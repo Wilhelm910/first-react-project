@@ -7,7 +7,7 @@ export default function HostLayout() {
         <div>
             <header>
                 <nav>
-                    <NavLink className={({ isActive }) => isActive ? "nav--link active" : "nav--link"} to="" end>Dashboard</NavLink>
+                    <NavLink className={({ isActive }) => isActive ? "nav--link active" : "nav--link"} to="." end>Dashboard</NavLink>
                     <NavLink className={({ isActive }) => isActive ? "nav--link active" : "nav--link"} to="vans">Vans</NavLink>
                     <NavLink className={({ isActive }) => isActive ? "nav--link active" : "nav--link"} to="income">Income</NavLink>
                     <NavLink className={({ isActive }) => isActive ? "nav--link active" : "nav--link"} to="reviews">Reviews</NavLink>

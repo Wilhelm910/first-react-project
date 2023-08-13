@@ -238,3 +238,13 @@ header {
   color: black;
   text-decoration: none;
 }
+
+
+.host-vans-details--container {
+  margin: 20px;
+  font-size: 24px;
+}
+
+.host-vans-details--navigation {
+  margin: 16px ;
+}

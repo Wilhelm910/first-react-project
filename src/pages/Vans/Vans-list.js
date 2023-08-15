@@ -24,7 +24,7 @@ export default function VansList() {
         return (
             <div className="van"
                 key={item.id}>
-                <Link to={`${item.id}`}>
+                <Link to={`${item.id}`} state={{search: searchParams.toString()}}>
                     <img className="vans--img" src={item.imageUrl} />
                 </Link>
                 <h4>{item.name}</h4>
@@ -59,9 +59,9 @@ export default function VansList() {
         <div>
             <h3 className="van--description">Explore our van options</h3>
             <div className="van--filter-options">
-                <NavLink className="filter-btn" to={searchString("type", "simple")}>Simple</NavLink>
-                <NavLink className="filter-btn" to={searchString("type", "luxury")}>Luxury</NavLink>
-                <NavLink className="filter-btn" to={searchString("type", "rugged")}>Rugged</NavLink>
+                <NavLink className={`filter-btn ${typeFilter === "simple" ? "selected" : null}`} to={searchString("type", "simple")}>Simple</NavLink>
+                <NavLink className={`filter-btn ${typeFilter === "luxury" ? "selected" : null}`} to={searchString("type", "luxury")}>Luxury</NavLink>
+                <NavLink className={`filter-btn ${typeFilter === "rugged" ? "selected" : null}`} to={searchString("type", "rugged")}>Rugged</NavLink>
                 {typeFilter ? (<NavLink className="clear-filter-btn" to={searchString("type", null)}>Clear filter</NavLink>) : null}
                 <button className="filter-btn" onClick={() => handleFilterChange("type", "simple")}>Simple</button>
                 <button className="filter-btn" onClick={() => handleFilterChange("type", "luxury")}>Luxury</button>

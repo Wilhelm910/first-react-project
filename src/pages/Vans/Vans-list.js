@@ -1,10 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link, useSearchParams } from "react-router-dom";
 
 export default function VansList() {
 
     const [vans, setVans] = useState([])
+    const [searchParams, setSearchParams] = useSearchParams();
+    const typeFilter = searchParams.get("type")
 
 
     useEffect(() => {
@@ -13,8 +15,12 @@ export default function VansList() {
             .then(data => setVans(data.vans))
     }, [])
 
+    const filteredVans = typeFilter ? vans.filter(item =>
+        item.type.toLowerCase() === typeFilter
+    ) : vans
 
-    const vanElements = vans.map((item) => {
+
+    const vanElements = filteredVans.map((item) => {
         return (
             <div className="van"
                 key={item.id}>
@@ -28,14 +34,49 @@ export default function VansList() {
         )
     })
 
+    function searchString(key, value) {
+        const sp = new URLSearchParams(searchParams)
+        if (value === null) {
+            sp.delete(key)
+        } else {
+            sp.set(key, value)
+        }
+        return `?${sp.toString()}`
+    }
+
+    function handleFilterChange(key, value) {
+        setSearchParams(prevParams => {
+            if (value === null) {
+                prevParams.delete(key)
+            } else {
+                prevParams.set(key, value)
+            }
+            return prevParams
+        })
+    }
+
     return (
         <div>
             <h3 className="van--description">Explore our van options</h3>
             <div className="van--filter-options">
-                <p className="filter-btn">Simple</p>
-                <p className="filter-btn">Luxury</p>
-                <p className="filter-btn">Rugged</p>
-                <p className="clear-filter-btn">Clear filter</p>
+                <NavLink className="filter-btn" to={searchString("type", "simple")}>Simple</NavLink>
+                <NavLink className="filter-btn" to={searchString("type", "luxury")}>Luxury</NavLink>
+                <NavLink className="filter-btn" to={searchString("type", "rugged")}>Rugged</NavLink>
+                {typeFilter ? (<NavLink className="clear-filter-btn" to={searchString("type", null)}>Clear filter</NavLink>) : null}
+                <button className="filter-btn" onClick={() => handleFilterChange("type", "simple")}>Simple</button>
+                <button className="filter-btn" onClick={() => handleFilterChange("type", "luxury")}>Luxury</button>
+                <button className="filter-btn" onClick={() => handleFilterChange("type", "rugged")}>Rugged</button>
+                <button className="clear-filter-btn" onClick={() => handleFilterChange("type", null)}>Clear filter</button>
+            </div>
+            <div className="van--filter-options">
+                <NavLink className="filter-btn" to="?type=simple">Simple</NavLink>
+                <NavLink className="filter-btn" to="?type=luxury">Luxury</NavLink>
+                <NavLink className="filter-btn" to="?type=rugged">Rugged</NavLink>
+                <NavLink className="clear-filter-btn" to=".">Clear filter</NavLink>
+                <button className="filter-btn" onClick={() => setSearchParams({ type: "simple" })}>Simple</button>
+                <button className="filter-btn" onClick={() => setSearchParams({ type: "luxury" })}>Luxury</button>
+                <button className="filter-btn" onClick={() => setSearchParams({ type: "rugged" })}>Rugged</button>
+                <button className="clear-filter-btn" onClick={() => setSearchParams({})}>Clear filter</button>
             </div>
             <div className="vans-container">
                 {vanElements}

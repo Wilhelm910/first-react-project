@@ -159,11 +159,14 @@ header {
   justify-content: space-around;
 }
 
+
 .filter-btn {
   background-color: antiquewhite;
   padding: 4px 8px;
   border-radius: 4px;
   cursor: pointer;
+  text-decoration: none;
+  color: black;
 }
 
 .van--description {
@@ -172,6 +175,7 @@ header {
 
 .clear-filter-btn {
   text-decoration: underline;
+  color: black;
 }
 
 

@@ -256,3 +256,23 @@ header {
 .selected {
   background-color: green;
 }
+
+.not-found--return-btn {
+  text-decoration: none;
+  color: white;
+  padding: 16px 32px;
+  background-color: rgb(31, 30, 30);
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.not-found--text {
+  margin: 30px;
+}
+
+.not-found--content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

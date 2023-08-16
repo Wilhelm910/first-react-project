@@ -8,20 +8,18 @@ export default function VanDetails() {
     const [van, setVan] = useState(null)
     const params = useParams()
     const location = useLocation().state.search
-    console.log(location)
-
+    const filterName = useLocation().state.type
 
     useEffect(() => {
         fetch(`/api/vans/${params.id}`)
             .then(res => res.json())
             .then(data => setVan(data.vans))
     }, [params.id])
-  
 
 
     return (
         <div>
-            <Link to={location ? `..?${location}` : ".."} relative="path" className="back-btn" > &larr; Back to all vans..</Link>
+            <Link to={location ? `..?${location}` : ".."} relative="path" className="back-btn" > &larr; Back to <b>{location ? filterName : "all"}</b> vans..</Link>
             {van ? (
                 <div className="vanDetail--container">
                     <div className="vanDetail--img-container">

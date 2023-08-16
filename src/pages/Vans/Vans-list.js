@@ -1,20 +1,41 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { NavLink, Link, useSearchParams } from "react-router-dom";
+import { getVans } from "../../api";
+import { useLoaderData } from "react-router-dom";
+
+export function loader() {
+    return getVans()
+}
+
 
 export default function VansList() {
 
-    const [vans, setVans] = useState([])
+    const vans = useLoaderData()
+
+  //  const [vans, setVans] = useState([])
     const [searchParams, setSearchParams] = useSearchParams();
     const typeFilter = searchParams.get("type")
+   // const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
 
-
+/*
     useEffect(() => {
-        fetch("api/vans")
-            .then(res => res.json())
-            .then(data => setVans(data.vans))
+        async function loadVans() {
+            setLoading(true)
+            try {
+                const data = await getVans()
+                setVans(data)
+            } catch (err) {
+                console.log(err)
+                setError(err)
+            } finally {
+                setLoading(false)
+            }
+        }
+        loadVans()
     }, [])
-
+*/
     const filteredVans = typeFilter ? vans.filter(item =>
         item.type.toLowerCase() === typeFilter
     ) : vans
@@ -24,7 +45,7 @@ export default function VansList() {
         return (
             <div className="van"
                 key={item.id}>
-                <Link to={`${item.id}`} state={{search: searchParams.toString()}}>
+                <Link to={`${item.id}`} state={{ search: searchParams.toString(), type: typeFilter }}>
                     <img className="vans--img" src={item.imageUrl} />
                 </Link>
                 <h4>{item.name}</h4>
@@ -53,6 +74,15 @@ export default function VansList() {
             }
             return prevParams
         })
+    }
+
+/*
+    if (loading) {
+        return <h1>Loading..</h1>
+    }
+*/
+    if (error) {
+        return <h1>There was an error: {error.message}</h1>
     }
 
     return (

@@ -1,18 +1,25 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLoaderData } from "react-router-dom";
+import { getHostVans } from "../../api";
 
+
+export function loader() {
+    return getHostVans()
+}
 
 export default function Vans() {
 
-    const [vans, setVans] = useState([])
-
-    useEffect(() => {
-        fetch("/api/host/vans")
-            .then(res => res.json())
-            .then(data => setVans(data.vans))
-    }, [])
-
+    const vans = useLoaderData()
+    /*
+        const [vans, setVans] = useState([])
+    
+        useEffect(() => {
+            fetch("/api/host/vans")
+                .then(res => res.json())
+                .then(data => setVans(data.vans))
+        }, [])
+    */
     const drawVans = vans.map((item) => {
         return (
             <NavLink key={item.id} className="host-vans--container" to={`${item.id}`}>
@@ -26,17 +33,6 @@ export default function Vans() {
     })
 
     return (
-        <div>
-            {
-                vans.length > 0 ?
-                    (
-                        <div>
-                            {drawVans}
-                        </div>
-                    )
-                    :
-                    <h2>Loading ...</h2>
-            }
-        </div>
+        <div> {drawVans}</div>
     )
 }  

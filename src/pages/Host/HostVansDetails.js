@@ -2,25 +2,31 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, useLoaderData } from "react-router-dom";
+import { getHostVans } from "../../api";
 
+export function loader({ params }) {
+    return getHostVans(params.id)
+}
 
 export default function HostVansDetails() {
 
-    const params = useParams()
-
-    const [vansDetails, setVansDetails] = useState(null)
-
-    useEffect(() => {
-        fetch(`/api/host/vans/${params.id}`)
-            .then(res => res.json())
-            .then(data => setVansDetails(data.vans[0]))
-    }, [params.id])
-
-    if (!vansDetails) {
-        return <h1>Loading...</h1>
-    }
-
+    const vansDetails = useLoaderData()
+    console.log(vansDetails)
+    /* const params = useParams()
+ 
+     const [vansDetails, setVansDetails] = useState(null)
+ 
+     useEffect(() => {
+         fetch(`/api/host/vans/${params.id}`)
+             .then(res => res.json())
+             .then(data => setVansDetails(data.vans[0]))
+     }, [params.id])
+ 
+     if (!vansDetails) {
+         return <h1>Loading...</h1>
+     }
+ *//*
     return (
         <div>
             <Link to=".." relative="path" className="back-btn" > &larr; Back to all vans..</Link>
@@ -37,7 +43,7 @@ export default function HostVansDetails() {
                 <NavLink className={({ isActive }) => isActive ? "nav--link active" : "nav--link"} to="pricing">Pricing</NavLink>
                 <NavLink className={({ isActive }) => isActive ? "nav--link active" : "nav--link"} to="photos">Photos</NavLink>
             </div>
-            <Outlet context={[vansDetails, setVansDetails]} />
+            <Outlet context={[vansDetails]} />
         </div>
-    )
+    )*/
 }

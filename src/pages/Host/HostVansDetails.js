@@ -11,8 +11,9 @@ export function loader({ params }) {
 
 export default function HostVansDetails() {
 
-    const vansDetails = useLoaderData()
-    console.log(vansDetails)
+    const data = useLoaderData()
+    const vansDetails = data[0]
+   
     /* const params = useParams()
  
      const [vansDetails, setVansDetails] = useState(null)
@@ -26,7 +27,7 @@ export default function HostVansDetails() {
      if (!vansDetails) {
          return <h1>Loading...</h1>
      }
- *//*
+ */
     return (
         <div>
             <Link to=".." relative="path" className="back-btn" > &larr; Back to all vans..</Link>
@@ -45,5 +46,5 @@ export default function HostVansDetails() {
             </div>
             <Outlet context={[vansDetails]} />
         </div>
-    )*/
+    )
 }

@@ -34,7 +34,7 @@ const route = createBrowserRouter(createRoutesFromElements(
       <Route path="reviews" element={<Reviews />} loader={async () => { return null }} />
       <Route path="income" element={<Income />} loader={async () => { return null }} />
       <Route path="vans" element={<Vans />} loader={hostVansLoader} />
-      <Route path="vans/:id" element={<HostVansDetails loader={hostVansDetailLoader} />} >
+      <Route path="vans/:id" element={<HostVansDetails />}loader={hostVansDetailLoader} >
         <Route index element={<HostVanInfo />} loader={async () => { return null }} />
         <Route path="pricing" element={<HostVanPricing />} loader={async () => { return null }} />
         <Route path="photos" element={<HostVanPhotos />} loader={async () => { return null }} />

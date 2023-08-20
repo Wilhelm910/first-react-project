@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Routes, Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 import "./server"
+import { requireAuth } from './utils';
 
 import Home from './pages/Home';
 import About from './pages/About';
@@ -12,7 +13,7 @@ import Dashboard from './pages/Host/Dashboard';
 import Reviews from './pages/Host/Reviews';
 import Income from './pages/Host/Income';
 import HostLayout from './components/HostLayout';
-import Vans, {loader as hostVansLoader} from './pages/Host/Vans';
+import Vans, { loader as hostVansLoader } from './pages/Host/Vans';
 import HostVansDetails, { loader as hostVansDetailLoader } from './pages/Host/HostVansDetails';
 import HostVanInfo from './pages/Host/HostVansInfo';
 import HostVanPhotos from './pages/Host/HostVansPhotos';
@@ -30,11 +31,11 @@ const route = createBrowserRouter(createRoutesFromElements(
     <Route path="vanslist" element={<VansList />} loader={vansLoader} errorElement={<Error />} />
     <Route path="vanslist/:id" element={<VanDetails />} loader={vanDetailLoader} />
     <Route path="host" element={<HostLayout loader={async () => { return null }} />}>
-      <Route index element={<Dashboard />} loader={async () => { return null }} />
-      <Route path="reviews" element={<Reviews />} loader={async () => { return null }} />
-      <Route path="income" element={<Income />} loader={async () => { return null }} />
+      <Route index element={<Dashboard />} loader={async () => await requireAuth()} />
+      <Route path="reviews" element={<Reviews />} loader={async () => await requireAuth()} />
+      <Route path="income" element={<Income />} loader={async () => await requireAuth()} />
       <Route path="vans" element={<Vans />} loader={hostVansLoader} />
-      <Route path="vans/:id" element={<HostVansDetails />}loader={hostVansDetailLoader} >
+      <Route path="vans/:id" element={<HostVansDetails />} loader={hostVansDetailLoader} >
         <Route index element={<HostVanInfo />} loader={async () => { return null }} />
         <Route path="pricing" element={<HostVanPricing />} loader={async () => { return null }} />
         <Route path="photos" element={<HostVanPhotos />} loader={async () => { return null }} />

@@ -9,7 +9,7 @@ export function loader({ request }) {
 }
 
 export async function action(obj) {
-
+    const redirectTo = new URL(obj.request.url).searchParams.get("redirectTo")
     const formData = await obj.request.formData()
     const email = formData.get("email")
     const password = formData.get("password")
@@ -17,7 +17,7 @@ export async function action(obj) {
         const data = await loginUser({ email, password })
  
         localStorage.setItem('loggedIn', 'true');
-        const response = redirect("/host")
+        const response = redirect(redirectTo ? redirectTo : "/host")
         response.body = true  // It's silly, but it works
         return response
     } catch (err) {

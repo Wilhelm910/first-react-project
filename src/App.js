@@ -21,13 +21,13 @@ import HostVanPricing from './pages/Host/HostVansPricing';
 import HostVanLayout from './components/HostVanLayout';
 import NotFound from './pages/NotFound';
 import Error from './components/Error';
-import Login, {loader as loginLoader} from './pages/Login';
+import Login, {loader as loginLoader, action as loginAction} from './pages/Login';
 
 const route = createBrowserRouter(createRoutesFromElements(
   <Route element={<Layout />} loader={async () => { return null }}>
     <Route path="/" element={<Home />} loader={async () => { return null }} />
     <Route path="about" element={<About />} loader={async () => { return null }} />
-    <Route path='login' element={<Login />} loader={loginLoader} />
+    <Route path='login' element={<Login />} loader={loginLoader} action={loginAction} />
     <Route path="vanslist" element={<VansList />} loader={vansLoader} errorElement={<Error />} />
     <Route path="vanslist/:id" element={<VanDetails />} loader={vanDetailLoader} />
     <Route path="host" element={<HostLayout loader={async () => { return null }} />}>

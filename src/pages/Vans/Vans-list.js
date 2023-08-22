@@ -17,7 +17,7 @@ export default function VansList() {
     const [searchParams, setSearchParams] = useSearchParams();
     const typeFilter = searchParams.get("type")
     // const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null)
+    //const [error, setError] = useState(null)
 
     /*
         useEffect(() => {
@@ -88,10 +88,10 @@ export default function VansList() {
             return <h1>Loading..</h1>
         }
     */
-    if (error) {
+   /* if (error) {
         return <h1>There was an error: {error.message}</h1>
     }
-
+*/
     function renderVansElements(vans) {
 
         console.log(vans)

@@ -2,10 +2,10 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link, useLocation, useLoaderData } from "react-router-dom";
-import { getVans } from "../../api";
+import { getVanById } from "../../api";
 
 export function loader({ params }) {
-    return getVans(params.id)
+    return getVanById(params.id)
 }
 
 export default function VanDetails() {

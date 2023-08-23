@@ -94,7 +94,6 @@ export default function VansList() {
 */
     function renderVansElements(vans) {
 
-        console.log(vans)
         const filteredVans = typeFilter ? vans.filter(item =>
             item.type.toLowerCase() === typeFilter
         ) : vans

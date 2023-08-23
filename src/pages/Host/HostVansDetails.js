@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Outlet, NavLink, useLoaderData } from "react-router-dom";
-import { getHostVans } from "../../api";
+import { getVanById } from "../../api";
 import { requireAuth } from "../../utils";
 
 export async function loader({ params, request }) {
     await requireAuth(request)
-    return getHostVans(params.id)
+    return getVanById(params.id)
 }
 
 export default function HostVansDetails() {
